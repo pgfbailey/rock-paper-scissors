@@ -2,11 +2,10 @@ let userScore = 0;
 let cpuScore = 0;
 const userScore_span = document.getElementById("user-score");
 const cpuScore_span = document.getElementById("cpu-score");
-const scoreBoard_div = document.querySelector(".score-board");
 const result_div = document.querySelector(".result > p");
-const rock_div = document.getElementById("rock");
-const paper_div = document.getElementById("paper");
-const scissors_div = document.getElementById("scissors");
+const rock_div = document.getElementById("r");
+const paper_div = document.getElementById("p");
+const scissors_div = document.getElementById("s");
 
 // Decides the CPU's move based on a random number.
 function getCpuChoice() {
@@ -22,21 +21,30 @@ function convertToWord(letter) {
 }
 
 function win(user, cpu) {
+    const user_div = document.getElementById(user);
     userScore++;
     userScore_span.innerHTML = userScore;
     cpuScore_span.innerHTML = cpuScore;
     result_div.innerHTML = `(YOU) ${convertToWord(user)} beats (CPU) ${convertToWord(cpu)}. You win!`;
+    user_div.classList.add('green-glow');
+    setTimeout(() => user_div.classList.remove('green-glow'), 500);
 }
 
 function lose(user, cpu) {
+    const user_div = document.getElementById(user);
     cpuScore++;
     userScore_span.innerHTML = userScore;
     cpuScore_span.innerHTML = cpuScore;
     result_div.innerHTML = `(YOU) ${convertToWord(user)} lose to (CPU) ${convertToWord(cpu)}. You lost!`;
+    user_div.classList.add('red-glow');
+    setTimeout(() => user_div.classList.remove('red-glow'), 500);
 }
 
 function draw(user, cpu) {
+    const user_div = document.getElementById(user);
     result_div.innerHTML = `(YOU) ${convertToWord(user)} draw against (CPU) ${convertToWord(cpu)}. You drew!`;
+    user_div.classList.add('orange-glow');
+    setTimeout(() => user_div.classList.remove('orange-glow'), 500);
 }
 
 // Handles game logic.
@@ -63,17 +71,9 @@ function game(userChoice) {
 
 // Returns the value of the choice the user has clicked.
 function main() {
-    rock_div.addEventListener('click', function () {
-        game("r");
-    })
-
-    paper_div.addEventListener('click', function () {
-        game("p");
-    })
-
-    scissors_div.addEventListener('click', function () {
-        game("s");
-    })
+    rock_div.addEventListener('click', () => game("r"));
+    paper_div.addEventListener('click', () => game("p"));
+    scissors_div.addEventListener('click', () => game("s"));
 }
 
 main();
