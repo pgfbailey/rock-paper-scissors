@@ -35,14 +35,14 @@ function lose(user, cpu) {
     cpuScore++;
     userScore_span.innerHTML = userScore;
     cpuScore_span.innerHTML = cpuScore;
-    result_div.innerHTML = `(YOU) ${convertToWord(user)} lose to (CPU) ${convertToWord(cpu)}. You lost!`;
+    result_div.innerHTML = `(YOU) ${convertToWord(user)} loses to (CPU) ${convertToWord(cpu)}. You lost!`;
     user_div.classList.add('red-glow');
     setTimeout(() => user_div.classList.remove('red-glow'), 500);
 }
 
 function draw(user, cpu) {
     const user_div = document.getElementById(user);
-    result_div.innerHTML = `(YOU) ${convertToWord(user)} draw against (CPU) ${convertToWord(cpu)}. You drew!`;
+    result_div.innerHTML = `(YOU) ${convertToWord(user)} draws against (CPU) ${convertToWord(cpu)}. Its a tie!`;
     user_div.classList.add('orange-glow');
     setTimeout(() => user_div.classList.remove('orange-glow'), 500);
 }
